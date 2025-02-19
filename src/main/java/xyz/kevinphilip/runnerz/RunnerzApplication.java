@@ -2,9 +2,16 @@ package xyz.kevinphilip.runnerz;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
+import xyz.kevinphilip.runnerz.run.Location;
+import xyz.kevinphilip.runnerz.run.Run;
+
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 @SpringBootApplication
 public class RunnerzApplication {
@@ -29,8 +36,29 @@ public class RunnerzApplication {
 
 		// Logging
 		// There are different levels of logging, see documentation
-		log.info("Application started successfully");
+		//		log.info("Application started successfully");
 
+		// What is Devtools
+		// When you save, it should automatically reload the application, but you have to enable it
+
+
+		// Architectures
+		// He explained that a popular structure is MVC where you have a model and controller package within the main package
+		// The problem is with that you have to import everything and it's a bit of a mess
+		// Another approach is the Feature pattern e.g. run and user
+
+
+
+	}
+
+
+	// A command line runner is a way to run code when the application starts
+	@Bean
+	CommandLineRunner runner() {
+		return args -> {
+			Run run = new Run(1, "First Run", LocalDateTime.now(), LocalDateTime.now().plus(1, ChronoUnit.HOURS), 10, Location.OUTDOOR);
+			log.info("Run: " + run);
+		};
 	}
 
 }
