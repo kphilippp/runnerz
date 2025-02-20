@@ -1,5 +1,6 @@
 package xyz.kevinphilip.runnerz.run;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -44,14 +45,14 @@ public class RunController {
     // post
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    void create(@RequestBody Run run) {
+    void create(@Valid @RequestBody Run run) {
         runRepository.create(run);
     }
 
     // put
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void update(@PathVariable Integer id, @RequestBody Run run) {
+    void update(@PathVariable Integer id, @Valid @RequestBody Run run) {
         runRepository.update(id, run);
     }
 
