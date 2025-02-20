@@ -35,7 +35,7 @@ public class RunController {
 
         Optional<Run> run = runRepository.findRunById(id);
         if (run.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Run with id " + id + " not found()");
+            throw new RunNotFoundException();
         }
         return run.get();
 
